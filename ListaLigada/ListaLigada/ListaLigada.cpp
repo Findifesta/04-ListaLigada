@@ -179,6 +179,8 @@ void excluirElemento()
 				aux = aux->prox;
 			}
 			aux->valor = NULL;
+			//quando eu tento excluir, fica 0. Quando eu tento usar algo da função inicializar, como o free, ou mesmo algo que vi na net, como o delete,
+			//gera um valor absurdo e dão falha na compilação.
 			cout << "EXCLUIDO\n";
 			return;
 		}
@@ -195,37 +197,35 @@ void buscarElemento()
 	{
 		return;
 	}
-	cout << "Qual elemento deseja buscar?";
-	cin >> busca->valor;
-	busca->prox = NULL;
-	int x = 0;
-
+	
 	if (primeiro == NULL)
 	{
 		cout << "Lista vazia \n";
 		return;
 	}
+	
+	cout << "Qual elemento deseja buscar?\n";
+	cin >> busca->valor;
+	busca->prox = NULL;
+	int x = 0;
+	
+	NO* aux = primeiro;
+	while (aux != NULL)
+	{
+		if (aux->valor == busca->valor)
+		{
+			x++;
+		}
+		aux = aux->prox;
+	}
+	if (x == 0)
+	{
+		cout << "NAO ENCONTRADO\n";
+	}
 	else
 	{
-		NO* aux = primeiro;
-		while (aux != NULL)
-		{
-			if (aux->valor == busca->valor)
-			{
-				x++;
-			}
-			aux = aux->prox;
-		}
-		if (x == 0)
-		{
-			cout << "NAO ENCONTRADO\n";
-		}
-		else
-		{
-			cout << "ENCONTRADO\n";
-		}
+		cout << "ENCONTRADO\n";
 	}
-
 }
 
 
