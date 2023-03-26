@@ -178,7 +178,9 @@ void excluirElemento()
 				aux->valor = aux->prox->valor;
 				aux = aux->prox;
 			}
-			aux->valor = NULL;
+			NO* paraExcluir = aux;
+			aux = aux->prox;
+			free(paraExcluir);
 			cout << "EXCLUIDO\n";
 			return;
 		}
