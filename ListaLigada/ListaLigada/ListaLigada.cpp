@@ -153,41 +153,36 @@ void inserirElemento()
 
 void excluirElemento()
 {
-	NO* exclu = (NO*)malloc(sizeof(NO));
-
-	if (primeiro == NULL)
-	{
-		cout << "Lista vazia \n";
-		return;
-	}
-	if (exclu == NULL)
-	{
-		return;
-	}
-	cout << "Qual elemento deseja excluir?\n";
-	cin >> exclu->valor;
-	exclu->prox = NULL;
-
+	int valor;
+	NO* exclu = NULL;
 	NO* aux = primeiro;
-	while (aux != NULL)
-	{
-		if (aux->valor == exclu->valor)
-		{
-			while (aux->prox != NULL)
-			{
-				aux->valor = aux->prox->valor;
-				aux = aux->prox;
+	NO* anterior = NULL;
+
+	if (primeiro == NULL) {
+		cout << "Lista vazia\n";
+		return;
+	}
+
+	cout << "Qual elemento deseja excluir?\n";
+	cin >> valor;
+
+	while (aux != NULL) {
+		if (aux->valor == valor) {
+			if (anterior == NULL) {
+				primeiro = aux->prox;
 			}
-			aux->valor = NULL;
-			//quando eu tento excluir, fica 0. Quando eu tento usar algo da função inicializar, como o free, ou mesmo algo que vi na net, como o delete,
-			//gera um valor absurdo e dão falha na compilação.
+			else {
+				anterior->prox = aux->prox;
+			}
 			cout << "EXCLUIDO\n";
+			free(aux);
 			return;
 		}
+		anterior = aux;
 		aux = aux->prox;
 	}
-	cout << "NAO ENCONTRADO\n";
 
+	cout << "NAO ENCONTRADO\n";
 }
 
 void buscarElemento()
